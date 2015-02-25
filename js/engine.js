@@ -42,6 +42,7 @@ var Engine = (function(global) {
         var now = Date.now(),
             dt = (now - lastTime) / 1000.0;
 
+           // alert(Math.min(Math.floor(Math.random() * (320 - 60)) + 60, 320));
         /* Call our update/render functions, pass along the time delta to
          * our update function since it may be used for smooth animation.
          */
@@ -80,7 +81,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function  and loops through all of the
@@ -93,9 +94,20 @@ var Engine = (function(global) {
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
+
         });
         player.update();
     }
+
+    function checkCollisions(){
+    allEnemies.forEach(function(enemy) {
+        if(player.x < enemy.x + 50 && player.x + 50 > enemy.x && player.y < enemy.y + 50 && player.y + 50 > enemy.y ) {
+            player.reset();
+        }
+    });
+}
+
+
 
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every
@@ -148,8 +160,10 @@ var Engine = (function(global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
+
         allEnemies.forEach(function(enemy) {
             enemy.render();
+
         });
 
         player.render();
