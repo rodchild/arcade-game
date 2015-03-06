@@ -10,3 +10,4 @@ The player will use the arrow keys to play the game.
 Left key  move the player to the left, right key to the right, up move the player up and down move the player down.
 
 Every time the player reaches the water his score increases to 10 and the player goes back to the initial position.
+click on the index.html file and enjoy the game!
